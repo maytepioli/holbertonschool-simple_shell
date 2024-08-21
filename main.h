@@ -10,5 +10,6 @@
 #include <sys/types.h>
 char *mi_getenv(const char *name);
 char *wand_path(const char *input);
-int main(void);
+char **spellarray(char *input);
+int power_fwe(char *phatname, char *argv[], char *envp[]);
 #endif
