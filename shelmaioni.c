@@ -22,14 +22,14 @@ int main(void)
 		if (read == -1)
 			break;
 		input[strcspn(input, "\n")] = 0;
-		if (strcmp(input, "exit") == 0)
+		as = spellarray(input);
+		if (as == NULL)
+			continue;
+		if (strcmp(as[0], "exit") == 0)
 		{
 			free(input);
 			exit(EXIT_SUCCESS);
 		}
-		as = spellarray(input);
-		if (as == NULL)
-			continue;
 		if (stat(as[0], &sb) != -1)
 			power_fwe(as[0], as, NULL);
 		else
