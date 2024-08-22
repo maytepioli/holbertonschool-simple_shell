@@ -1,8 +1,8 @@
 #include "main.h"
 /**
+ * main - Entry point of the program.
  *
- *
- *
+ * Return: 0 in the best case, -1 in fail case
  */
 int main(void)
 {
@@ -21,14 +21,12 @@ int main(void)
 		read = getline(&input, &len, stdin);
 		if (read == -1)
 			break;
-		input[strcspn(input, "\n")] = 0;
 		as = spellarray(input);
 		if (as == NULL)
 			continue;
 		if (strcmp(as[0], "exit") == 0)
 		{
-			free(input);
-			free_array(as);
+			free(input), free_array(as);
 			exit(EXIT_SUCCESS);
 		}
 		if (stat(as[0], &sb) != -1)
@@ -38,17 +36,14 @@ int main(void)
 			path = wand_path(as[0]);
 			if (path == NULL)
 			{
-				a = _perror(s, count, input);
-				free(a);
+				a = _perror(s, count, input), free(a);
 			}
-			else
-				power_fwe(path, as, NULL);
+			power_fwe(path, as, NULL);
 			free(path);
 		}
 		free_array(as);
 	}
 	free(input);
-	return (0);
 }
 /**
  *_perror - Prints an error message with a custom format.

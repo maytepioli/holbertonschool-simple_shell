@@ -39,7 +39,7 @@ char **spellarray(char *input)
 	char *token, *cp_input = strdup(input), **args;
 
 	if (input == NULL || cp_input == NULL)
-	{	
+	{
 		free(cp_input);
 		return (NULL);
 	}
@@ -48,12 +48,11 @@ char **spellarray(char *input)
 	if (!args)
 	{
 		free(cp_input);
-		return (NULL);
+		return (NULLi);
 	}
 	if (countoks <= 0)
 	{
-		free(args);
-		free(cp_input);
+		free(args), free(cp_input);
 		return (NULL);
 	}
 	token = strtok(cp_input, delimity);
@@ -67,8 +66,7 @@ char **spellarray(char *input)
 				i--;
 				free(args[i]);
 			}
-			free(args);
-			free(cp_input);
+			free(args), free(cp_input);
 			return (NULL);
 		}
 		i++;
