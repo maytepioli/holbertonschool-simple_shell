@@ -45,13 +45,14 @@ char **spellarray(char *input)
 	}
 	countoks = countstr(input);
 	args = malloc(sizeof(char *) * (countoks + 1));
-	if (countoks <= 0)
+	if (!args)
 	{
 		free(cp_input);
 		return (NULL);
 	}
-	if (!args)
+	if (countoks <= 0)
 	{
+		free(args);
 		free(cp_input);
 		return (NULL);
 	}
@@ -61,7 +62,7 @@ char **spellarray(char *input)
 		args[i] = strdup(token);
 		if (!args[i])
 		{
-			while (i > 0)
+			while (i >= 0)
 			{
 				i--;
 				free(args[i]);
