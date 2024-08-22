@@ -28,6 +28,7 @@ int main(void)
 		if (strcmp(as[0], "exit") == 0)
 		{
 			free(input);
+			free_array(as);
 			exit(EXIT_SUCCESS);
 		}
 		if (stat(as[0], &sb) != -1)
