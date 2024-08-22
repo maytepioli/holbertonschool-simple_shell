@@ -6,11 +6,11 @@
  */
 int main(void)
 {
-	char *path, *input = NULL;
+	char *path, *input = NULL, *s = "sh";
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
-	int args, i = 0, count = 0;
+	int i = 0, count = 0;
 	char **as = NULL;
 
 	while (1)
@@ -31,28 +31,49 @@ int main(void)
 		if (as == NULL)
 			continue;
 		if (stat(as[0], &sb) != -1)
-		{
-			args = power_fwe(as[0], as, NULL);
-			if (args == -1)
-				continue;
-		}
+			power_fwe(as[0], as, NULL);
 		else
 		{
 			path = wand_path(as[0]);
 			if (path == NULL)
-				perror("execve");
+				_perror(s, input, count);
 			else
 				power_fwe(path, as, NULL);
-		free(path);
+			free(path);
 		}
-		while (as[i] != NULL)
-		{
-			free(as[i]);
-			i++;
-		}
-		free(as);
+		free_array(as);
 	}
 	free(input);
 	return (0);
 }
+/**
+ *_perror - Prints an error message with a custom format.
+ *@s: The first string input, typically the name of the program or command
+ *@in: The second string input, usually the specific error message or argument.
+ * @count: The integer to be included in the error message,
+ * typically an error code or count.
+ */
+void _perror(char *s, char *in, int count)
+{
+	char *i;
 
+	i = malloc(sizeof(char *) * strlen(s) + strlen(in) + sizeof(int) + 5);
+	perror(i);
+	free(i);
+}
+/**
+ *free_array - Frees a dynamically allocated array of strings.
+ * @array: A pointer to the array of strings to be freed.
+ *Return: Void. This function does not return a value.
+ */
+void free_array(char **array)
+{
+	int i = 0;
+
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
