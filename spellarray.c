@@ -39,7 +39,10 @@ char **spellarray(char *input)
 	char *token, *cp_input = strdup(input), **args;
 
 	if (input == NULL || cp_input == NULL)
+	{	
+		free(cp_input);
 		return (NULL);
+	}
 	countoks = countstr(input);
 	args = malloc(sizeof(char *) * (countoks + 1));
 	if (countoks <= 0)
