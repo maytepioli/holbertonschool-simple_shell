@@ -6,11 +6,11 @@
  */
 int main(void)
 {
-	char *path, *input = NULL, *s = "sh";
+	char *path, *input = NULL, *s = "sh", *a;
 	size_t len = 0;
 	ssize_t read = 0;
 	struct stat sb;
-	int i = 0, count = 0;
+	int count = 0;
 	char **as = NULL;
 
 	while (1)
@@ -36,7 +36,10 @@ int main(void)
 		{
 			path = wand_path(as[0]);
 			if (path == NULL)
-				_perror(s, input, count);
+			{
+				a = _perror(s, count, input);
+				free(a);
+			}
 			else
 				power_fwe(path, as, NULL);
 			free(path);
@@ -52,14 +55,16 @@ int main(void)
  *@in: The second string input, usually the specific error message or argument.
  * @count: The integer to be included in the error message,
  * typically an error code or count.
+ * Return: a
  */
-void _perror(char *s, char *in, int count)
+char *_perror(char *s, int count, char *in)
 {
-	char *i;
+	char *a;
 
-	i = malloc(sizeof(char *) * strlen(s) + strlen(in) + sizeof(int) + 5);
-	perror(i);
-	free(i);
+	a = malloc(sizeof(char *) * strlen(s) + strlen(in) + sizeof(int) + 5);
+	sprintf(a, "%s: %i: %s ", s, count, in);
+	perror(a);
+	return (a);
 }
 /**
  *free_array - Frees a dynamically allocated array of strings.
