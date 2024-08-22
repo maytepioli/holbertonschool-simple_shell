@@ -42,6 +42,6 @@ char *wand_path(const char *input)
 		free(full_path);
 		directory = strtok(NULL, ":");
 	}
-	return (NULL);
 	free(cp_path);
+	return (NULL);
 }
