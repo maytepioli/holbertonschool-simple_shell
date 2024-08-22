@@ -9,7 +9,7 @@
 char countstr(char *iinput)
 {
 	int count = 0;
-	char *tokens, *cp_input = strdup(iinput);
+	char *tokens, *cp_input;
 
 	if (iinput == NULL)
 		return (0);
