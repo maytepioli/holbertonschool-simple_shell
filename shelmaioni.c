@@ -12,6 +12,7 @@ int main(void)
 	struct stat sb;
 	int count = 0;
 	char **as = NULL;
+	int status = 0;
 
 	while (1)
 	{
@@ -30,20 +31,19 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 		if (stat(as[0], &sb) != -1)
-			power_fwe(as[0], as, NULL);
+			status = power_fwe(as[0], as, NULL);
 		else
 		{
 			path = wand_path(as[0]);
 			if (path == NULL)
-			{
 				a = _perror(s, count, input), free(a);
-			}
-			power_fwe(path, as, NULL);
-			free(path);
+			else
+				status = power_fwe(path, as, NULL);
+			
 		}
 		free_array(as);
 	}	free(input);
-	return(0);
+	return(status);
 }
 /**
  *_perror - Prints an error message with a custom format.
@@ -57,6 +57,7 @@ char *_perror(char *s, int count, char *in)
 {
 	char *a;
 
+	in[strcspn(in, "\n")] = 0;
 	a = malloc(sizeof(char *) * strlen(s) + strlen(in) + sizeof(int) + 5);
 	sprintf(a, "%s: %i: %s ", s, count, in);
 	perror(a);
