@@ -48,7 +48,7 @@ char **spellarray(char *input)
 	if (!args)
 	{
 		free(cp_input);
-		return (NULLi);
+		return (NULL);
 	}
 	if (countoks <= 0)
 	{
