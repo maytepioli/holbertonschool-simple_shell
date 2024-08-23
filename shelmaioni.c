@@ -42,8 +42,8 @@ int main(void)
 			free(path);
 		}
 		free_array(as);
-	}
-	free(input);
+	}	free(input);
+	return(0);
 }
 /**
  *_perror - Prints an error message with a custom format.
