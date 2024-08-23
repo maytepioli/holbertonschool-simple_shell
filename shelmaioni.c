@@ -28,7 +28,7 @@ int main(void)
 		if (strcmp(as[0], "exit") == 0)
 		{
 			free(input), free_array(as);
-			exit(EXIT_SUCCESS);
+			exit(status);
 		}
 		if (stat(as[0], &sb) != -1)
 			status = power_fwe(as[0], as, NULL);
