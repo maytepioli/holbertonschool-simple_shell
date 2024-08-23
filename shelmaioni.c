@@ -4,7 +4,9 @@
  *
  * Return: 0 in the best case, -1 in fail case
  */
-int main(void)
+int main(__attribute__((unused))int ac,
+		__attribute__((unused))char **av,
+		char **env)
 {
 	char *path, *input = NULL, *s = "sh", *a;
 	size_t len = 0;
@@ -29,6 +31,10 @@ int main(void)
 		{
 			free(input), free_array(as);
 			exit(status);
+		}
+		if (strcmp(as[0], "env") == 0)
+		{
+			print_arr(env);
 		}
 		if (stat(as[0], &sb) != -1)
 			status = power_fwe(as[0], as, NULL);
@@ -78,4 +84,20 @@ void free_array(char **array)
 		i++;
 	}
 	free(array);
+}
+
+/**
+ *
+ */
+
+char **print_arr(char **arr)
+{
+	int i = 0;
+
+	while (arr[i] != NULL)
+	{
+		printf("%s\n", arr[i]);
+		i++;
+	}
+	return(arr);
 }
