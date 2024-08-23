@@ -44,11 +44,13 @@ int main(__attribute__((unused))int ac,
 			if (path == NULL)
 				a = _perror(s, count, input), free(a);
 			else
-				status = power_fwe(path, as, NULL);
+				status = power_fwe(path, as, NULL), free(path);
+			
 			
 		}
 		free_array(as);
-	}	free(input);
+	}
+	free(input);
 	return(status);
 }
 /**
