@@ -1,7 +1,9 @@
 # _Simplified Shell Project_ 🐚
 This project implements a simplified version of a C command interpreter. The program allows you to execute commands, manage environment variables, and handle basic errors. It is designed to provide a fundamental understanding of how a shell works in an operating system.
 ## _Descripción_
-The program simulates the basic behavior of a shell, allowing the user to input commands and see the results. The shell runs in an infinite loop, reading user input and executing commands. Additionally, the program provides the capability to display environment variables and handle errors in a customized way.
+The program simulates the basic behavior of a shell, allowing the user to input commands and see the results. The shell runs in an infinite loop, reading user input and executing commands. Additionally, the program provides the capability to display environment variables and handle errors in a customized way. 
+### _Welcome to the doors of Shelmaioni._
+![Webp net-resizeimage](https://github.com/user-attachments/assets/c1e5e473-09ce-46ec-a014-aa8268a76cd7)
 
 ## 🛠️ _Features_
 
@@ -69,7 +71,7 @@ Once compiled, run the shell with:
  ```
  ## 📊 _Flow Diagrams_
   
-  ### 🔮  `Main Flow Diagram` _(SHELMAIONI)_
+  ### 🔮  `Main Flow Diagram` _(shelmaioni)_
  ![imagen](https://github.com/user-attachments/assets/4c01c501-fec2-4168-b845-4a10a5116340)
 
 ### ⚡ `wand_path` Flow Diagram
@@ -122,3 +124,7 @@ int power_fwe(char *phatname, char *argv[], char *envp[]);
 ```
 * 🧙‍♂️  _AUTHOR_
   * _Mayte Pioli_
+
+
+
+
